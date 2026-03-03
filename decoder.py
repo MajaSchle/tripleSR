@@ -13,7 +13,7 @@ class MLP(nn.Module):
                 stage_one_layers.append(nn.ReLU())
             elif i == depth - 1:
                 stage_one_layers.append(nn.Linear(width, in_dim))
-                stage_one_layers.append(nn.Identity())
+                stage_one_layers.append(nn.ReLU())
             else:
                 stage_one_layers.append(nn.Linear(width, width))
                 stage_one_layers.append(nn.ReLU())
@@ -26,7 +26,7 @@ class MLP(nn.Module):
                 stage_two_layers.append(nn.ReLU())
             elif i == depth - 1:
                 stage_two_layers.append(nn.Linear(width, out_dim))
-                # No activation at final output
+                stage_two_layers.append(nn.ReLU())
             else:
                 stage_two_layers.append(nn.Linear(width, width))
                 stage_two_layers.append(nn.ReLU())
